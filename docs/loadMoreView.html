@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Hexo - LoadMoreView组件</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <link href='/css/docs.css' rel='stylesheet'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      NSIP行情渲染引擎文档
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>项目介绍</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/index.html'>项目介绍</a>
+              </li>
+            
+              <li>
+                <a href='/overview.html'>引擎工作流程</a>
+              </li>
+            
+              <li>
+                <a href='/progress.html'>历史版本及规划</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>使用指南</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/installation.html'>安装</a>
+              </li>
+            
+              <li>
+                <a href='/build.html'>构建</a>
+              </li>
+            
+              <li>
+                <a href='/using.html'>如何使用</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>容器组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/chartContainer.html'>chartContainer容器</a>
+              </li>
+            
+              <li>
+                <a href='/chart.html'>chart容器</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>绘制组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/visualComponent.html'>组件介绍</a>
+              </li>
+            
+              <li>
+                <a href='/axes.html'>坐标轴 Axes</a>
+              </li>
+            
+              <li>
+                <a href='/line.html'>线图 LineSeries</a>
+              </li>
+            
+              <li>
+                <a href='/candle.html'>蜡烛图 CandleStickSeries</a>
+              </li>
+            
+              <li>
+                <a href='/technicalline.html'>指标图 Technicalindicators</a>
+              </li>
+            
+              <li>
+                <a href='/background.html'>背景线 Background</a>
+              </li>
+            
+              <li>
+                <a href='/gridline.html'>网格线 GridLine</a>
+              </li>
+            
+              <li>
+                <a href='/coordinate.html'>坐标 Coordinate</a>
+              </li>
+            
+              <li>
+                <a href='/crossHairCursor.html'>十字线 CrossHairCursor</a>
+              </li>
+            
+              <li>
+                <a href='/loadMoreView.html' class='active'>加载更多 LoadMoreView</a>
+              </li>
+            
+              <li>
+                <a href='/toolTip.html'>标注 toolTip</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>辅助功能</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/eventCapture.html'>事件处理 EventCapture</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>其他</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/about.html'>关于</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>LoadMoreView组件</h1>
+      <h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><table>
+<thead>
+<tr>
+<th>State</th>
+<th>UI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event: onPan, start = 0 &amp;&amp; dx &gt; 0, 触发onLoadMore判断</td>
+<td>图表向左滑动</td>
+</tr>
+<tr>
+<td>onLoadMore: preload</td>
+<td>LoadMoreView出现</td>
+</tr>
+<tr>
+<td>event: release, 通过dx判断是否触发loading</td>
+<td></td>
+</tr>
+<tr>
+<td>onLoadMore: loading</td>
+<td>LoadingMoreView:loading</td>
+</tr>
+<tr>
+<td>onLoadMore: inactive</td>
+<td>LoadMoreView消失</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h2><table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+<th>default</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>visible</td>
+<td>boolean</td>
+<td>true</td>
+<td>控制显示loadMoreView视觉元素</td>
+</tr>
+<tr>
+<td>position</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>width</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>height</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><table>
+<thead>
+<tr>
+<th>name</th>
+<th>value</th>
+<th>default</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loading</td>
+<td>boolean</td>
+<td>false</td>
+<td>控制显示加载状态的文案和icon</td>
+</tr>
+</tbody>
+</table>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>ChartContainer的onLoadMore传入的函数须返回Promise，用于控制onLoadMore事件的loading状态</li>
+</ul>
+
+    </div>
+  </div>
+  <script src="js/chart.js"></script>
+</body>
+</html>

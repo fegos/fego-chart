@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Hexo - Chart组件</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <link href='/css/docs.css' rel='stylesheet'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      NSIP行情渲染引擎文档
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>项目介绍</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/index.html'>项目介绍</a>
+              </li>
+            
+              <li>
+                <a href='/overview.html'>引擎工作流程</a>
+              </li>
+            
+              <li>
+                <a href='/progress.html'>历史版本及规划</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>使用指南</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/installation.html'>安装</a>
+              </li>
+            
+              <li>
+                <a href='/build.html'>构建</a>
+              </li>
+            
+              <li>
+                <a href='/using.html'>如何使用</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>容器组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/chartContainer.html'>chartContainer容器</a>
+              </li>
+            
+              <li>
+                <a href='/chart.html' class='active'>chart容器</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>绘制组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/visualComponent.html'>组件介绍</a>
+              </li>
+            
+              <li>
+                <a href='/axes.html'>坐标轴 Axes</a>
+              </li>
+            
+              <li>
+                <a href='/line.html'>线图 LineSeries</a>
+              </li>
+            
+              <li>
+                <a href='/candle.html'>蜡烛图 CandleStickSeries</a>
+              </li>
+            
+              <li>
+                <a href='/technicalline.html'>指标图 Technicalindicators</a>
+              </li>
+            
+              <li>
+                <a href='/background.html'>背景线 Background</a>
+              </li>
+            
+              <li>
+                <a href='/gridline.html'>网格线 GridLine</a>
+              </li>
+            
+              <li>
+                <a href='/coordinate.html'>坐标 Coordinate</a>
+              </li>
+            
+              <li>
+                <a href='/crossHairCursor.html'>十字线 CrossHairCursor</a>
+              </li>
+            
+              <li>
+                <a href='/loadMoreView.html'>加载更多 LoadMoreView</a>
+              </li>
+            
+              <li>
+                <a href='/toolTip.html'>标注 toolTip</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>辅助功能</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/eventCapture.html'>事件处理 EventCapture</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>其他</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/about.html'>关于</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>Chart组件</h1>
+      <p>设置图标位置和高度，计算Y坐标轴范围</p>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*web*/</span></div><div class="line">&lt;Chart</div><div class="line">	frame=&#123;&#123;</div><div class="line">		height: <span class="number">350</span>,</div><div class="line">		origin: [<span class="number">0</span>, <span class="number">0</span>]</div><div class="line">	&#125;&#125;</div><div class="line">	yExtents=&#123;[</div><div class="line">		d =&gt; +d[<span class="number">2</span>], </div><div class="line">		d =&gt; [+d[<span class="number">1</span>], +d[<span class="number">2</span>], +d[<span class="number">3</span>], +d[<span class="number">4</span>]],</div><div class="line">		indicators.MA[<span class="number">0</span>].dataKey, indicators.MA[<span class="number">1</span>].dataKey,</div><div class="line">		indicators.MA[<span class="number">2</span>].dataKey</div><div class="line">	]&#125;</div><div class="line">&gt;</div><div class="line">&lt;<span class="regexp">/Chart&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">/</span>*mobile*<span class="regexp">/</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">&lt;Chart</span></div><div class="line"><span class="regexp">	style=&#123;&#123; flex: 1 &#125;&#125;</span></div><div class="line"><span class="regexp">	insetBottom=&#123;30&#125;</span></div><div class="line"><span class="regexp">	yExtents=&#123;[d =&gt; [+d[1]]]&#125;</span></div><div class="line"><span class="regexp">	indicators=&#123;['BOLL']&#125;</span></div><div class="line"><span class="regexp">	yAxisMargin=&#123;20&#125;</span></div><div class="line"><span class="regexp">	yGridLineNum=&#123;2&#125;</span></div><div class="line"><span class="regexp">&gt;</span></div><div class="line"><span class="regexp">	&#123;...children&#125;</span></div><div class="line"><span class="regexp">&lt;/</span>Chart&gt;</div></pre></td></tr></table></figure>
+<h3 id="props列表"><a href="#props列表" class="headerlink" title="props列表"></a>props列表</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">frame</td>
+<td style="text-align:left">图表的高度和位置，web端有，mobile端没有</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">无</td>
+</tr>
+<tr>
+<td style="text-align:left">indicators</td>
+<td style="text-align:left">chart中包含的指标类型</td>
+<td style="text-align:left">array</td>
+<td style="text-align:left">无</td>
+</tr>
+<tr>
+<td style="text-align:left">yExtends</td>
+<td style="text-align:left">要计算数据的取值函数集合</td>
+<td style="text-align:left">array(元素类型为func或string)</td>
+<td style="text-align:left">无</td>
+</tr>
+<tr>
+<td style="text-align:left">insertBottom</td>
+<td style="text-align:left">底部缩进距离</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">yAxisMargin</td>
+<td style="text-align:left">y轴值域扩展的范围(web),Y轴极值距边界的距离(mobile)</td>
+<td style="text-align:left">array(web),number(mobile)</td>
+<td style="text-align:left">[0.90, 1.10]（web），无(mobile)</td>
+</tr>
+<tr>
+<td style="text-align:left">yGridLineNum</td>
+<td style="text-align:left">Y轴网格线的数量</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frame属性（web）"><a href="#frame属性（web）" class="headerlink" title="frame属性（web）"></a>frame属性（web）</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">height</td>
+<td style="text-align:left">图表的高度</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">origin</td>
+<td style="text-align:left">图表的位置坐标</td>
+<td style="text-align:left">array</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+  </div>
+  <script src="js/chart.js"></script>
+</body>
+</html>

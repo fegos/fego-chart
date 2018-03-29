@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Hexo - toolTip组件</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <link href='/css/docs.css' rel='stylesheet'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      NSIP行情渲染引擎文档
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>项目介绍</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/index.html'>项目介绍</a>
+              </li>
+            
+              <li>
+                <a href='/overview.html'>引擎工作流程</a>
+              </li>
+            
+              <li>
+                <a href='/progress.html'>历史版本及规划</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>使用指南</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/installation.html'>安装</a>
+              </li>
+            
+              <li>
+                <a href='/build.html'>构建</a>
+              </li>
+            
+              <li>
+                <a href='/using.html'>如何使用</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>容器组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/chartContainer.html'>chartContainer容器</a>
+              </li>
+            
+              <li>
+                <a href='/chart.html'>chart容器</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>绘制组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/visualComponent.html'>组件介绍</a>
+              </li>
+            
+              <li>
+                <a href='/axes.html'>坐标轴 Axes</a>
+              </li>
+            
+              <li>
+                <a href='/line.html'>线图 LineSeries</a>
+              </li>
+            
+              <li>
+                <a href='/candle.html'>蜡烛图 CandleStickSeries</a>
+              </li>
+            
+              <li>
+                <a href='/technicalline.html'>指标图 Technicalindicators</a>
+              </li>
+            
+              <li>
+                <a href='/background.html'>背景线 Background</a>
+              </li>
+            
+              <li>
+                <a href='/gridline.html'>网格线 GridLine</a>
+              </li>
+            
+              <li>
+                <a href='/coordinate.html'>坐标 Coordinate</a>
+              </li>
+            
+              <li>
+                <a href='/crossHairCursor.html'>十字线 CrossHairCursor</a>
+              </li>
+            
+              <li>
+                <a href='/loadMoreView.html'>加载更多 LoadMoreView</a>
+              </li>
+            
+              <li>
+                <a href='/toolTip.html' class='active'>标注 toolTip</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>辅助功能</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/eventCapture.html'>事件处理 EventCapture</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>其他</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/about.html'>关于</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>toolTip组件</h1>
+      <h2 id="BaseTooltip"><a href="#BaseTooltip" class="headerlink" title="BaseTooltip"></a>BaseTooltip</h2><h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123; BaseTooltip &#125; = Tooltip;</div><div class="line"></div><div class="line">&lt;BaseTooltip xPos=&#123;<span class="number">10</span>&#125; yPos=&#123;<span class="number">20</span>&#125; formatter=&#123;&#123;</div><div class="line">	selector: <span class="function"><span class="params">d</span> =&gt;</span> [moment(d[<span class="number">0</span>]).format(<span class="string">'MM/DD'</span>), d[<span class="number">1</span>], d[<span class="number">2</span>], d[<span class="number">3</span>]],</div><div class="line">	name: [<span class="string">'时间'</span>, <span class="string">'最新价'</span>, <span class="string">'波动点'</span>, <span class="string">'涨跌幅'</span>],</div><div class="line">	stoke: [<span class="string">''</span>, <span class="string">''</span>, d=&gt;&#123;<span class="keyword">return</span> d&gt;<span class="number">0</span> ? <span class="string">'red'</span>:<span class="string">'green'</span>&#125;, d=&gt;&#123;<span class="keyword">return</span> d&gt;<span class="number">0</span> ? <span class="string">'red'</span>:<span class="string">'green'</span>&#125;],</div><div class="line">&#125;&#125; font=&#123;<span class="string">''</span>&#125; bgColor=&#123;<span class="string">''</span>&#125; alpha=&#123;<span class="number">0.4</span>&#125; /&gt;</div></pre></td></tr></table></figure>
+<h3 id="props列表"><a href="#props列表" class="headerlink" title="props列表"></a>props列表</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">xPos</td>
+<td style="text-align:left">x轴坐标</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:center">yPos</td>
+<td style="text-align:left">y轴坐标</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">20</td>
+</tr>
+<tr>
+<td style="text-align:center">formatter</td>
+<td style="text-align:left">用来格式化图例文本，显示分时和K线数据时必传</td>
+<td style="text-align:left">object</td>
+<td style="text-align:left">{ selector: [], name: [], stroke: ‘string’或[] }</td>
+</tr>
+<tr>
+<td style="text-align:center">visible</td>
+<td style="text-align:left">是否显示</td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td style="text-align:center">font</td>
+<td style="text-align:left">字体设置</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">“italic 25px”</td>
+</tr>
+<tr>
+<td style="text-align:center">bgColor</td>
+<td style="text-align:left">背景色</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">‘#000’</td>
+</tr>
+<tr>
+<td style="text-align:center">alpha</td>
+<td style="text-align:left">背景透明度</td>
+<td style="text-align:left">number(0-1)</td>
+<td style="text-align:left">0.4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fromatter属性"><a href="#fromatter属性" class="headerlink" title="fromatter属性"></a>fromatter属性</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">selector</td>
+<td style="text-align:left">数据存取器</td>
+<td style="text-align:left">array(元素类型为func)</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">name</td>
+<td style="text-align:left">显示的图例名称</td>
+<td style="text-align:left">array</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">stroke</td>
+<td style="text-align:left">图例文字颜色</td>
+<td style="text-align:left">string或array(元素类型为string或func)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="TechTooltip"><a href="#TechTooltip" class="headerlink" title="TechTooltip"></a>TechTooltip</h2><p>包括MATooltip, RSITooltip, MACDTooltip, BOLLTooltip, KDJTooltip</p>
+<h3 id="示例代码-1"><a href="#示例代码-1" class="headerlink" title="示例代码"></a>示例代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> &#123; MATooltip, RSITooltip, MACDTooltip &#125; = Tooltip;</div><div class="line"></div><div class="line"><span class="keyword">let</span> indicators = &#123;</div><div class="line">	MA: [&#123;</div><div class="line">		selector: <span class="function">(<span class="params">data</span>) =&gt;</span> &#123; <span class="keyword">return</span> +data[<span class="number">1</span>] &#125;,</div><div class="line">		stroke: <span class="string">'red'</span>,</div><div class="line">		dataKey: <span class="string">'MA'</span> + firstMAPeriod</div><div class="line">	&#125;, &#123;</div><div class="line">		stroke: <span class="string">'blue'</span>,</div><div class="line">		selector: <span class="function">(<span class="params">data</span>) =&gt;</span> &#123; <span class="keyword">return</span> +data[<span class="number">1</span>] &#125;,</div><div class="line">		dataKey: <span class="string">'MA'</span> + secondMAPeriod</div><div class="line">	&#125;],</div><div class="line">	MACD: [&#123;</div><div class="line">		stroke: &#123;</div><div class="line">			MACD: <span class="string">"#FF0000"</span>,</div><div class="line">			DIFF: <span class="string">"#00F300"</span>,</div><div class="line">			DEA: <span class="string">"#4682B4"</span></div><div class="line">		&#125;,</div><div class="line">		dataKey: <span class="string">'MACD'</span></div><div class="line">	&#125;]</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;MATooltip xPos=&#123;<span class="number">10</span>&#125; yPos=&#123;<span class="number">100</span>&#125; indicators=&#123;indicators.MA&#125; /&gt;</div><div class="line">&lt;MACDTooltip indicators=&#123;indicators.MACD&#125; visible=&#123;showMACD&#125; /&gt;</div></pre></td></tr></table></figure>
+<h3 id="props列表-1"><a href="#props列表-1" class="headerlink" title="props列表"></a>props列表</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">xPos</td>
+<td style="text-align:left">x轴坐标</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">yPos</td>
+<td style="text-align:left">y轴坐标</td>
+<td style="text-align:left">number</td>
+<td style="text-align:left">20</td>
+</tr>
+<tr>
+<td style="text-align:left">indicators</td>
+<td style="text-align:left">背景透明度</td>
+<td style="text-align:left">number(0-1)</td>
+<td style="text-align:left">0.4</td>
+</tr>
+<tr>
+<td style="text-align:left">visible</td>
+<td style="text-align:left">是否显示</td>
+<td style="text-align:left">bool</td>
+<td style="text-align:left">true</td>
+</tr>
+<tr>
+<td style="text-align:left">font</td>
+<td style="text-align:left">字体设置</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">“italic 25px”</td>
+</tr>
+<tr>
+<td style="text-align:left">bgColor</td>
+<td style="text-align:left">背景色</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">‘#000’</td>
+</tr>
+<tr>
+<td style="text-align:left">alpha</td>
+<td style="text-align:left">背景透明度</td>
+<td style="text-align:left">number(0-1)</td>
+<td style="text-align:left">0.4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="indicators属性"><a href="#indicators属性" class="headerlink" title="indicators属性"></a>indicators属性</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">dataKey</td>
+<td style="text-align:left">标注key值，用于取数据</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:center">stroke</td>
+<td style="text-align:left">图例文字颜色</td>
+<td style="text-align:left">string或array(支持元素类型为func)</td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+  </div>
+  <script src="js/chart.js"></script>
+</body>
+</html>

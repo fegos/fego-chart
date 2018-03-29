@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Hexo - 构建</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <link href='/css/docs.css' rel='stylesheet'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      NSIP行情渲染引擎文档
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>项目介绍</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/index.html'>项目介绍</a>
+              </li>
+            
+              <li>
+                <a href='/overview.html'>引擎工作流程</a>
+              </li>
+            
+              <li>
+                <a href='/progress.html'>历史版本及规划</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>使用指南</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/installation.html'>安装</a>
+              </li>
+            
+              <li>
+                <a href='/build.html' class='active'>构建</a>
+              </li>
+            
+              <li>
+                <a href='/using.html'>如何使用</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>容器组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/chartContainer.html'>chartContainer容器</a>
+              </li>
+            
+              <li>
+                <a href='/chart.html'>chart容器</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>绘制组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/visualComponent.html'>组件介绍</a>
+              </li>
+            
+              <li>
+                <a href='/axes.html'>坐标轴 Axes</a>
+              </li>
+            
+              <li>
+                <a href='/line.html'>线图 LineSeries</a>
+              </li>
+            
+              <li>
+                <a href='/candle.html'>蜡烛图 CandleStickSeries</a>
+              </li>
+            
+              <li>
+                <a href='/technicalline.html'>指标图 Technicalindicators</a>
+              </li>
+            
+              <li>
+                <a href='/background.html'>背景线 Background</a>
+              </li>
+            
+              <li>
+                <a href='/gridline.html'>网格线 GridLine</a>
+              </li>
+            
+              <li>
+                <a href='/coordinate.html'>坐标 Coordinate</a>
+              </li>
+            
+              <li>
+                <a href='/crossHairCursor.html'>十字线 CrossHairCursor</a>
+              </li>
+            
+              <li>
+                <a href='/loadMoreView.html'>加载更多 LoadMoreView</a>
+              </li>
+            
+              <li>
+                <a href='/toolTip.html'>标注 toolTip</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>辅助功能</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/eventCapture.html'>事件处理 EventCapture</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>其他</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/about.html'>关于</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>构建</h1>
+      <h2 id="构建说明"><a href="#构建说明" class="headerlink" title="构建说明"></a>构建说明</h2><p>建立一套完善的构建流程是为了让渲染引擎的使用者可以更方便、快捷的引用和使用引擎库</p>
+<h2 id="引用方案"><a href="#引用方案" class="headerlink" title="引用方案"></a>引用方案</h2><p>由于nsip-chart的定位是跨平台绘制引擎，所以在设计构建流程上比一般的库多了一些复杂度，这体现在</p>
+<ul>
+<li>开发时绘制组件有web端和移动端两种实现</li>
+<li>使用者会在web端和移动端分别引用引擎库（工程内），或者在浏览器直接引用</li>
+</ul>
+<p>为了设计出更好的构建和引用方式，我们调研了一些跨平台库，总结出三类引用方式</p>
+<ul>
+<li>Web/移动端分离: 这种方式是Victory/Victory-Native图表库使用的，好处是不同平台所安装的库分离，缺点是要维护多个库，带来开发和维护上的成本</li>
+<li>Web/移动端不分离，用户通过配置选择所需文件: Antd-mobile使用了这种方式，用户通过webpack resolve属性来决定在使用web版或者移动版文件,也是nsip-chart目前采用的方式</li>
+<li>Web/移动端不分离，库自行判断: react-primitives使用了这种方式，该库会判断用户所在平台并自动帮用户选择文件，这种方式用户所需要做的就是引入库，是对用户上手最友好的方式</li>
+</ul>
+<h2 id="构建方案"><a href="#构建方案" class="headerlink" title="构建方案"></a>构建方案</h2><p>nsip-chart内置了两种构建流程：</p>
+<h3 id="构建方式1-默认"><a href="#构建方式1-默认" class="headerlink" title="构建方式1(默认)"></a>构建方式1(默认)</h3><ul>
+<li>输出commonJS格式：使用babel将es6文件打包成es5文件,维持源代码目录结构,输出路径为lib<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build-cjs</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="构建方式2"><a href="#构建方式2" class="headerlink" title="构建方式2"></a>构建方式2</h3><ul>
+<li>输出umd格式: 使用webpack将所有模块文件打包成一个bundle文件,输出路径为dist<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build-umd</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><p>一条完整的开发、构建流程应该是这样的:</p>
+<ol>
+<li>开发: 开发工作在src里完成</li>
+<li>转译: 将src里的ES6+源代码转译成ES5代码，使用nsip-chart的开发者可以通过npm引入nsip-chart而不必做其他配置</li>
+<li>打包: 如果使用者需要在浏览器环境下直接引用nsip-chart,我们可以将nsip-chart打包成bundle.js提供给使用者</li>
+</ol>
+
+    </div>
+  </div>
+  <script src="js/chart.js"></script>
+</body>
+</html>

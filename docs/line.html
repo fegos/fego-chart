@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Hexo - LineSeries</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <link href='/css/docs.css' rel='stylesheet'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      NSIP行情渲染引擎文档
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>项目介绍</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/index.html'>项目介绍</a>
+              </li>
+            
+              <li>
+                <a href='/overview.html'>引擎工作流程</a>
+              </li>
+            
+              <li>
+                <a href='/progress.html'>历史版本及规划</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>使用指南</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/installation.html'>安装</a>
+              </li>
+            
+              <li>
+                <a href='/build.html'>构建</a>
+              </li>
+            
+              <li>
+                <a href='/using.html'>如何使用</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>容器组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/chartContainer.html'>chartContainer容器</a>
+              </li>
+            
+              <li>
+                <a href='/chart.html'>chart容器</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>绘制组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/visualComponent.html'>组件介绍</a>
+              </li>
+            
+              <li>
+                <a href='/axes.html'>坐标轴 Axes</a>
+              </li>
+            
+              <li>
+                <a href='/line.html' class='active'>线图 LineSeries</a>
+              </li>
+            
+              <li>
+                <a href='/candle.html'>蜡烛图 CandleStickSeries</a>
+              </li>
+            
+              <li>
+                <a href='/technicalline.html'>指标图 Technicalindicators</a>
+              </li>
+            
+              <li>
+                <a href='/background.html'>背景线 Background</a>
+              </li>
+            
+              <li>
+                <a href='/gridline.html'>网格线 GridLine</a>
+              </li>
+            
+              <li>
+                <a href='/coordinate.html'>坐标 Coordinate</a>
+              </li>
+            
+              <li>
+                <a href='/crossHairCursor.html'>十字线 CrossHairCursor</a>
+              </li>
+            
+              <li>
+                <a href='/loadMoreView.html'>加载更多 LoadMoreView</a>
+              </li>
+            
+              <li>
+                <a href='/toolTip.html'>标注 toolTip</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>辅助功能</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/eventCapture.html'>事件处理 EventCapture</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>其他</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/about.html'>关于</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>LineSeries</h1>
+      <h2 id="mobile"><a href="#mobile" class="headerlink" title="mobile"></a>mobile</h2><h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;LineSeries yExtents=&#123;d =&gt; [+d[2]]&#125; stroke=&#123;&apos;#EC912E&apos;&#125; /&gt;</div><div class="line">&lt;LineSeries dataKey=&#123;&apos;timeline&apos;&#125; yExtents=&#123;d =&gt; [+d[1]]&#125; riseColor=&#123;&apos;#F05B48&apos;&#125; fallColor=&#123;&apos;#10BC90&apos;&#125; lightRiseColor=&#123;&apos;#F05B4800&apos;&#125; lightFallColor=&#123;&apos;#10BC9000&apos;&#125; strokeWidth=&#123;1&#125; /&gt;</div></pre></td></tr></table></figure>
+<h3 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">isRequired</th>
+<th style="text-align:left">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">dataKey</td>
+<td style="text-align:left">键值</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">无</td>
+</tr>
+<tr>
+<td style="text-align:left">stroke</td>
+<td style="text-align:left">线条颜色</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">black</td>
+</tr>
+<tr>
+<td style="text-align:left">riseColor</td>
+<td style="text-align:left">上涨颜色</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">red</td>
+</tr>
+<tr>
+<td style="text-align:left">fallColor</td>
+<td style="text-align:left">下跌颜色</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">green</td>
+</tr>
+<tr>
+<td style="text-align:left">yExtents</td>
+<td style="text-align:left">数据选择子</td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">无</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+  </div>
+  <script src="js/chart.js"></script>
+</body>
+</html>

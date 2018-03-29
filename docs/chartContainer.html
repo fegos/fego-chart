@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Hexo - ChartContainer</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <link href='/css/docs.css' rel='stylesheet'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      NSIP行情渲染引擎文档
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>项目介绍</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/index.html'>项目介绍</a>
+              </li>
+            
+              <li>
+                <a href='/overview.html'>引擎工作流程</a>
+              </li>
+            
+              <li>
+                <a href='/progress.html'>历史版本及规划</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>使用指南</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/installation.html'>安装</a>
+              </li>
+            
+              <li>
+                <a href='/build.html'>构建</a>
+              </li>
+            
+              <li>
+                <a href='/using.html'>如何使用</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>容器组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/chartContainer.html' class='active'>chartContainer容器</a>
+              </li>
+            
+              <li>
+                <a href='/chart.html'>chart容器</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>绘制组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/visualComponent.html'>组件介绍</a>
+              </li>
+            
+              <li>
+                <a href='/axes.html'>坐标轴 Axes</a>
+              </li>
+            
+              <li>
+                <a href='/line.html'>线图 LineSeries</a>
+              </li>
+            
+              <li>
+                <a href='/candle.html'>蜡烛图 CandleStickSeries</a>
+              </li>
+            
+              <li>
+                <a href='/technicalline.html'>指标图 Technicalindicators</a>
+              </li>
+            
+              <li>
+                <a href='/background.html'>背景线 Background</a>
+              </li>
+            
+              <li>
+                <a href='/gridline.html'>网格线 GridLine</a>
+              </li>
+            
+              <li>
+                <a href='/coordinate.html'>坐标 Coordinate</a>
+              </li>
+            
+              <li>
+                <a href='/crossHairCursor.html'>十字线 CrossHairCursor</a>
+              </li>
+            
+              <li>
+                <a href='/loadMoreView.html'>加载更多 LoadMoreView</a>
+              </li>
+            
+              <li>
+                <a href='/toolTip.html'>标注 toolTip</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>辅助功能</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/eventCapture.html'>事件处理 EventCapture</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>其他</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/about.html'>关于</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>ChartContainer</h1>
+      <h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/*分时图*/</div><div class="line">&lt;ChartContainer</div><div class="line">	style=&#123;&#123; flex: 1, paddingHorizontal: 10, paddingTop: StyleSheet.hairlineWidth, backgroundColor: Const.bgColor2 &#125;&#125;</div><div class="line">	data=&#123;timelineData.result&#125;</div><div class="line">	horizontal=&#123;this.props.isHorizontal&#125;</div><div class="line">	statusBarHeight=&#123;Const.statusBarHeight&#125;</div><div class="line">	preClosedPrice=&#123;timelineData.lastClosePrice&#125;</div><div class="line">	totalCount=&#123;1321&#125;</div><div class="line">	xDateTicks=&#123;[&apos;06:00&apos;, &apos;17:00&apos;, &apos;04:00&apos;]&#125;</div><div class="line">	chartType=&#123;&apos;timeline&apos;&#125;</div><div class="line">	eventCaptures=&#123;[&apos;longPress&apos;, &apos;doublePress&apos;]&#125;</div><div class="line">	plotState=&#123;plotState&#125;</div><div class="line">	plotConfig=&#123;this._plotConfig&#125;</div><div class="line">	onLoadMore=&#123;() =&gt; this._onLoadMore()&#125;</div><div class="line">	onLongPress=&#123;this._onLongPress&#125;</div><div class="line">	onDoublePress=&#123;this._onDoublePress&#125;</div><div class="line">&gt;</div><div class="line">	&#123;...children&#125;</div><div class="line">&lt;/ChartContainer&gt;</div><div class="line"></div><div class="line">/*五日图*/</div><div class="line">&lt;ChartContainer</div><div class="line">	style=&#123;&#123; flex: 1, paddingHorizontal: 10, paddingTop: StyleSheet.hairlineWidth, backgroundColor: Const.bgColor2 &#125;&#125;</div><div class="line">	data=&#123;fivedayData&#125;</div><div class="line">	horizontal=&#123;this.props.isHorizontal&#125;</div><div class="line">	statusBarHeight=&#123;Const.statusBarHeight&#125;</div><div class="line">	preClosedPrice=&#123;this._lastClosePrice&#125;</div><div class="line">	totalCount=&#123;1321 * 5&#125;</div><div class="line">	xDateTicks=&#123;this._dateStrArray&#125;</div><div class="line">	chartType=&#123;&apos;fiveday&apos;&#125;</div><div class="line">	dataOffset=&#123;this.state.dataOffset&#125;</div><div class="line">	eventCaptures=&#123;[&apos;longPress&apos;, &apos;doublePress&apos;]&#125;</div><div class="line">	plotState=&#123;plotState&#125;</div><div class="line">	plotConfig=&#123;this._plotConfig&#125;</div><div class="line">	onLongPress=&#123;this._onLongPress&#125;</div><div class="line">	onDoublePress=&#123;this._onDoublePress&#125;</div><div class="line">&gt;</div><div class="line">	&#123;...children&#125;</div><div class="line">&lt;/ChartContainer&gt;</div><div class="line"></div><div class="line">/*K线图*/</div><div class="line">&lt;ChartContainer</div><div class="line">	style=&#123;&#123; flex: 1, paddingHorizontal: 10, paddingBottom: paddingBottom, paddingTop: StyleSheet.hairlineWidth, backgroundColor: Const.bgColor2 &#125;&#125;</div><div class="line">	data=&#123;klineData&#125;</div><div class="line">	horizontal=&#123;this.props.isHorizontal&#125;</div><div class="line">	statusBarHeight=&#123;Const.statusBarHeight&#125;</div><div class="line">	chartType=&#123;&apos;kline&apos;&#125;</div><div class="line">	indicators=&#123;this.state.indicators&#125;</div><div class="line">	threshold=&#123;60&#125;</div><div class="line">	domain=&#123;domain&#125;</div><div class="line">	plotState=&#123;plotState&#125;</div><div class="line">	plotConfig=&#123;this._plotConfig&#125;</div><div class="line">	hasMore=&#123;hasMore&#125;</div><div class="line">	onLoadMore=&#123;() =&gt; this._onLoadMore()&#125;</div><div class="line">	updateDomain=&#123;(chartType, domain) =&gt; this._updateDomain(chartType, domain)&#125;</div><div class="line">	updatePlotState=&#123;(plotState) =&gt; this._updatePlotState(plotState)&#125;</div><div class="line">	eventCaptures=&#123;[&apos;pan&apos;, &apos;press&apos;, &apos;longPress&apos;, &apos;doublePress&apos;, &apos;pinch&apos;]&#125;</div><div class="line">	onLongPress=&#123;this._onLongPress&#125;</div><div class="line">	onPress=&#123;this._onPress&#125;</div><div class="line">	onPan=&#123;this._onPan&#125;</div><div class="line">	onDoublePress=&#123;this._onDoublePress&#125;</div><div class="line">&gt;</div><div class="line">	&#123;...children&#125;</div><div class="line">&lt;/ChartContainer&gt;</div></pre></td></tr></table></figure>
+<h3 id="props列表"><a href="#props列表" class="headerlink" title="props列表"></a>props列表</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>参数</th>
+<th>默认值</th>
+<th>是否为必须</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chartType</td>
+<td>string</td>
+<td>无</td>
+<td>无</td>
+<td>是</td>
+<td>当前图表类型（timeline \</td>
+<td>kline）</td>
+</tr>
+<tr>
+<td>horizontal</td>
+<td>bool</td>
+<td>无</td>
+<td>false</td>
+<td>否</td>
+<td>是否为横屏</td>
+</tr>
+<tr>
+<td>statusBarHeight</td>
+<td>number</td>
+<td>无</td>
+<td>0</td>
+<td>否</td>
+<td>导航栏高度</td>
+</tr>
+<tr>
+<td>dataOffset</td>
+<td>number</td>
+<td>无</td>
+<td>0</td>
+<td>否</td>
+<td>数据偏移量，主要用于不从起始位置开始的五日图</td>
+</tr>
+<tr>
+<td>preClosedPrice</td>
+<td>string</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>昨日收盘价，假如为5日图，则为早一天的昨日收盘价</td>
+</tr>
+<tr>
+<td>totalCount</td>
+<td>number</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>分时图、五日图的总数据量</td>
+</tr>
+<tr>
+<td>xDateTicks</td>
+<td>array</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>分时图、五日图的横坐标数组</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td>number</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>加载更多阈值(K线左侧距离左边界的距离)，一般设置为60</td>
+</tr>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>无</td>
+<td>无</td>
+<td>是</td>
+<td>图表原始数据</td>
+</tr>
+<tr>
+<td>indicators</td>
+<td>object</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>图表技术指标</td>
+</tr>
+<tr>
+<td>eventCaptures</td>
+<td>array</td>
+<td>无</td>
+<td>[]</td>
+<td>否</td>
+<td>支持手势数组,假如不设置则不支持交互，支持手势种类(pan \</td>
+<td>pinch \</td>
+<td>press \</td>
+<td>longPress \</td>
+<td>doublePress)</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>object</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>数据显示区间，{start:XX, end:YY}</td>
+</tr>
+<tr>
+<td>plotConfig</td>
+<td>object</td>
+<td>无</td>
+<td>{spacing:2, barWidth:6}</td>
+<td>否</td>
+<td>图标配置</td>
+</tr>
+<tr>
+<td>plotState</td>
+<td>object</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>图标状态{currScale:aa, currBarWidth:bb, currStep:cc, xGridGap:dd}</td>
+</tr>
+<tr>
+<td>hasMore</td>
+<td>bool</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>是否有更多历史数据</td>
+</tr>
+<tr>
+<td>onLoadMore</td>
+<td>function</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>加载更多历史数据</td>
+</tr>
+<tr>
+<td>onDoublePress</td>
+<td>function</td>
+<td>无</td>
+<td>无</td>
+<td>否</td>
+<td>触发双击事件</td>
+</tr>
+<tr>
+<td>onLongPress</td>
+<td>function</td>
+<td>(currentItem)</td>
+<td>无</td>
+<td>否</td>
+<td>触发长按事件</td>
+</tr>
+<tr>
+<td>onPan</td>
+<td>function</td>
+<td>(dx,dy)</td>
+<td>无</td>
+<td>否</td>
+<td>滑动事件回调</td>
+</tr>
+<tr>
+<td>updateDomain</td>
+<td>function</td>
+<td>（chartType, newDomain）</td>
+<td>无</td>
+<td>否</td>
+<td>更新数据显示区间</td>
+</tr>
+<tr>
+<td>updatePlotState</td>
+<td>function</td>
+<td>(newPlotState)</td>
+<td>无</td>
+<td>否</td>
+<td>更新图标状态</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+  </div>
+  <script src="js/chart.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charSet='utf-8' />
+  <title>Hexo - 行情渲染引擎工作流程</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+  <link href='/css/docs.css' rel='stylesheet'>
+</head>
+<body>
+  <div class='menu'>
+    <div class='logo'>
+      NSIP行情渲染引擎文档
+    </div>
+    <nav class='menu-nav'>
+      
+        <ul class='nav'>
+          <span>项目介绍</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/index.html'>项目介绍</a>
+              </li>
+            
+              <li>
+                <a href='/overview.html' class='active'>引擎工作流程</a>
+              </li>
+            
+              <li>
+                <a href='/progress.html'>历史版本及规划</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>使用指南</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/installation.html'>安装</a>
+              </li>
+            
+              <li>
+                <a href='/build.html'>构建</a>
+              </li>
+            
+              <li>
+                <a href='/using.html'>如何使用</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>容器组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/chartContainer.html'>chartContainer容器</a>
+              </li>
+            
+              <li>
+                <a href='/chart.html'>chart容器</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>绘制组件</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/visualComponent.html'>组件介绍</a>
+              </li>
+            
+              <li>
+                <a href='/axes.html'>坐标轴 Axes</a>
+              </li>
+            
+              <li>
+                <a href='/line.html'>线图 LineSeries</a>
+              </li>
+            
+              <li>
+                <a href='/candle.html'>蜡烛图 CandleStickSeries</a>
+              </li>
+            
+              <li>
+                <a href='/technicalline.html'>指标图 Technicalindicators</a>
+              </li>
+            
+              <li>
+                <a href='/background.html'>背景线 Background</a>
+              </li>
+            
+              <li>
+                <a href='/gridline.html'>网格线 GridLine</a>
+              </li>
+            
+              <li>
+                <a href='/coordinate.html'>坐标 Coordinate</a>
+              </li>
+            
+              <li>
+                <a href='/crossHairCursor.html'>十字线 CrossHairCursor</a>
+              </li>
+            
+              <li>
+                <a href='/loadMoreView.html'>加载更多 LoadMoreView</a>
+              </li>
+            
+              <li>
+                <a href='/toolTip.html'>标注 toolTip</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>辅助功能</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/eventCapture.html'>事件处理 EventCapture</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+        <ul class='nav'>
+          <span>其他</span>
+          <ul class='nav'>
+            
+              <li>
+                <a href='/about.html'>关于</a>
+              </li>
+            
+          </ul>
+        </ul>
+      
+    </nav>
+  </div>
+  <div class='page'>
+    <div class='page-content'>
+      <h1>行情渲染引擎工作流程</h1>
+      <p>引擎工作流程及架构</p>
+<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow:"></a>Workflow:</h2><h3 id="Data-Management"><a href="#Data-Management" class="headerlink" title="Data Management"></a>Data Management</h3><ul>
+<li>获取和预处理<ul>
+<li>数据格式转化</li>
+</ul>
+</li>
+<li>保存</li>
+<li>计算</li>
+<li>分发</li>
+</ul>
+<h3 id="Event-Management"><a href="#Event-Management" class="headerlink" title="Event Management"></a>Event Management</h3><ul>
+<li>监听</li>
+<li>识别及处理事件(事件冲突)</li>
+<li>分发事件</li>
+</ul>
+<h3 id="Layout-Style-amp-Draw"><a href="#Layout-Style-amp-Draw" class="headerlink" title="Layout, Style &amp; Draw"></a>Layout, Style &amp; Draw</h3><ul>
+<li>整体布局</li>
+<li>Chart内布局</li>
+<li>Chart间布局</li>
+</ul>
+<hr>
+<h2 id="引擎架构"><a href="#引擎架构" class="headerlink" title="引擎架构"></a>引擎架构</h2><ul>
+<li>ChartContainer: 图表整体容器，唯一的数据管理以及事件监听容器</li>
+<li>Chart</li>
+<li>Components</li>
+</ul>
+<h3 id="组件功能"><a href="#组件功能" class="headerlink" title="组件功能"></a>组件功能</h3><ol>
+<li>chartContainer: 获取数据，整体frame，(optional props: xExtents, indicators), 获取data和frame后，计算plotData, xScale</li>
+<li>chart: 获取chartFrame, yExtents, 计算yScale</li>
+<li>components: 根据xScale,yScale和data，结合组件自身的绘制规则进行绘制</li>
+</ol>
+<hr>
+<p>流程</p>
+<p><div id="graph"></div></p>
+<script src="https://gw.alipayobjects.com/as/g/datavis/g6/1.2.0/g6.min.js"></script>
+<script src="https://gw.alipayobjects.com/as/g/datavis/g6-plugins/1.0.0/g6-plugins.min.js"></script>
+<script>
+const data = {
+    "nodes": [
+        {id:'0',label:'Data 数据'},
+        {id:'1',label:'ChartContainer 图表容器'},
+        {id:'2',label:'Chart 布局容器'},
+        {id:'3',label:'全局视觉组件(如Background)'},
+        {id:'4',label:'EventCapture 事件捕捉'},
+        {id:'5',label:'视觉组件(如Axis)'},
+        {id:'6',label:'视觉组件(如CandleStickSeries)'},
+    ],
+    "edges": [
+        {id:'0-1',source:'0',target:'1'},
+        {id:'1-2',source:'1',target:'2'},
+        {id:'1-3',source:'1',target:'3'},
+        {id:'1-4',source:'1',target:'4'},
+        {id:'2-5',source:'2',target:'5'},
+        {id:'2-6',source:'2',target:'6'},
+    ]
+};
+const dagre = new G6.Plugins['layout.dagre']({
+  rankdir: 'LR',
+  nodesep: 100,
+  ranksep: 100,
+});
+const net = new G6.Net({
+  id: 'graph',
+  height: window.innerHeight,
+  fitView: 'autoZoom',
+  plugins: [dagre]
+});
+net.source(data.nodes, data.edges);
+net.edge().shape('arrow');
+net.render();
+</script>
+
+
+    </div>
+  </div>
+  <script src="js/chart.js"></script>
+</body>
+</html>
