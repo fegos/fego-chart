@@ -1,7 +1,7 @@
 # NSIP行情图表引擎库
 
 ## 项目说明：
-NSIP项目跨平台行情图表引擎库
+fego-chart: 跨平台行情图表引擎库
 
 ## 当前版本以及依赖
 + v0.1.3
@@ -10,7 +10,7 @@ NSIP项目跨平台行情图表引擎库
 	+ rn: 0.44
 	+ babel-loader: 7.x
 
-## NSIP行情图表引擎小组：
+## 行情图表引擎小组：
 + 徐达迟 bjxudachi@corp.netease.com
 + 付鑫 bjfuxin1@corp.netease.com
 + 沈文兴 bjshenwenxing@corp.netease.com
