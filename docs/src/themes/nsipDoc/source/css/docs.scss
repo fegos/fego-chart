@@ -1,0 +1,30 @@
+// Colors
+$bordersColor: #efefef;
+$primary: #A8864D;
+
+// Sizes
+$menuWidth: 300px;
+
+@import './_menu';
+@import './_content';
+@import './_typography';
+@import './_code';
+
+body {
+	font-family: 'Open Sans';
+}
+
+table {
+	border-collapse:collapse;
+}
+
+table, th, td {
+	border: 2px solid #BBB;
+	min-width: 120px;
+	text-align: center;
+}
+
+th, td {
+	padding: 2px 5px;
+}
+
