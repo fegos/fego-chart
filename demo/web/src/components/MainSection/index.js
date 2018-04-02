@@ -5,7 +5,7 @@ import { Layout, Menu, Breadcrumb, Icon, Button, Slider, InputNumber, Row, Col }
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 import { Components } from '../../chart-engine/src'
-// import { Components } from 'nsip-chart'
+// import { Components } from 'fego-chart'
 let { ChartContainer, Series, Axes, Coordinates, Tooltip, Chart, Background } = Components;
 let { XAxis, YAxis } = Axes;
 let { LineSeries, CandleStickSeries, Technicalindicators } = Series;

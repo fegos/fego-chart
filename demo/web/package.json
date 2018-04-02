@@ -9,7 +9,7 @@
 		"start": "webpack-dev-server --hot --profile --progress --colors --config ./webpack.config.js ",
 		"build": "NODE_ENV=production webpack --progress --colors",
 		"mock": "esky-mock -c mock/config.js",
-		"init": "npm install && npm run nsip-chart"
+		"init": "npm install && npm run fego-chart"
 	},
 	"license": "MIT",
 	"devDependencies": {
