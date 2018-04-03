@@ -2,153 +2,134 @@
  * MACD指标线组件
  * @author eric
  */
-"use strict";
 
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { ART, StyleSheet } from 'react-native'
-const { Path, Shape, Group, Transform } = ART;
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ART, StyleSheet } from 'react-native';
 
-export default class MACD extends Component {
-	static defaultProps = {
-		lineWidth: StyleSheet.hairlineWidth,
-	}
+import BaseIndicator from '../BaseIndicator';
 
-	static propsType = {
-		// 指标Key
-		dataKey: PropTypes.string.isRequired,
-		// 线条颜色
-		stroke: PropTypes.object.isRequired,
-		// 线条粗细
-		lineWidth: PropTypes.number,
-		// 柱状图粗细
-		barWidth: PropTypes.number,
-	}
+const {
+  Path, Shape, Group, Transform,
+} = ART;
 
-	shouldComponentUpdate(nextProps, nextState, nextContext) {
-		let { data: preData, domain: preDoamin, xScale: preXScale, yScale: preYScale } = this.context;
-		let { data, domain, xScale, yScale } = nextContext;
-		if (!preData && data ||
-			!preDoamin && domain ||
-			!preYScale || yScale) {
-			return true;
-		}
-		let preActualData = preData.slice(preDoamin.start, preDoamin.end + 1);v
-		let actualData = data.slice(domain.start, domain.end + 1);
-		if (JSON.stringify(preActualData) !== JSON.stringify(actualData) ||
-			preXScale !== xScale ||
-			preYScale !== yScale) {
-			return true;
-		}
-		return false;
-	}
+export default class MACD extends BaseIndicator {
+  /**
+   * 组件属性
+   *
+   * @static
+   * @memberof MACD
+   */
+  static defaultProps = {
+    lineWidth: StyleSheet.hairlineWidth,
+  }
 
-	/**
-	 * 计算绘制路径
-	 */
-	_caculatePath = () => {
-		let { dataKey } = this.props;
-		let { indicatorData, domain, xScale, yScale, plotConfig } = this.context;
-		let { barWidth } = plotConfig;
-		if (this.props.barWidth) {
-			barWidth = this.props.barWidth;
-		}
-		let difPath = new Path();
-		let deaPath = new Path();
-		let upPath = new Path();
-		let downPath = new Path();
+  static propsType = {
+    // 指标Key
+    dataKey: PropTypes.string.isRequired,
+    // 线条颜色
+    stroke: PropTypes.object.isRequired,
+    // 线条粗细
+    lineWidth: PropTypes.number,
+    // 柱状图粗细
+    barWidth: PropTypes.number,
+  }
 
-		if (indicatorData && domain && xScale && yScale) {
-			let data = indicatorData[dataKey];
-			if (data) {
-				let { start, end } = domain;
-				let screenData = data.slice(start, end + 1);
-				let length = end - start + 1;
-				let firstM = false;
-				let firstS = false;
-				for (var index = 0; index < length; index++) {
-					let dataElem = screenData[index];
-					if (dataElem) {
-						if (dataElem.MACD === '-' || dataElem.MACD === undefined) {
-							let firstM = false;
-							continue;
-						} else {
-							if (!firstM) {
-								firstM = true;
-								difPath.moveTo(xScale(index), yScale(dataElem.MACD));
-							} else {
-								difPath.lineTo(xScale(index), yScale(dataElem.MACD));
-							}
-						}
+  /**
+   * 计算绘制路径
+   */
+  _caculatePath = () => {
+    const { dataKey } = this.props;
+    const {
+      indicatorData, domain, xScale, yScale, plotConfig,
+    } = this.context;
+    let { barWidth: curBarWidth } = plotConfig;
+    if (this.props.barWidth) {
+      curBarWidth = this.props.barWidth;
+    }
+    const difPath = new Path();
+    const deaPath = new Path();
+    const upPath = new Path();
+    const downPath = new Path();
 
-						if (dataElem.signal === '-' || dataElem.signal === undefined) {
-							let firstS = false;
-							continue;
-						} else {
-							if (!firstS) {
-								firstS = true;
-								deaPath.moveTo(xScale(index), yScale(dataElem.signal));
-							} else {
-								deaPath.lineTo(xScale(index), yScale(dataElem.signal));
-							}
-						}
+    if (indicatorData && domain && xScale && yScale) {
+      const data = indicatorData[dataKey];
+      if (data) {
+        const { start, end } = domain;
+        const screenData = data.slice(start, end + 1);
+        const length = end - start + 1;
+        let firstM = false;
+        let firstS = false;
+        for (let index = 0; index < length; index++) {
+          const dataElem = screenData[index];
+          if (dataElem) {
+            if (dataElem.MACD === '-' || dataElem.MACD === undefined) {
+              firstM = false;
+            } else if (!firstM) {
+              firstM = true;
+              difPath.moveTo(xScale(index), yScale(dataElem.MACD));
+            } else {
+              difPath.lineTo(xScale(index), yScale(dataElem.MACD));
+            }
 
-						if (dataElem.histogram === '-' || dataElem.histogram === undefined) {
-							continue;
-						} else {
-							if (dataElem.histogram >= 0) {
-								//up
-								upPath.moveTo(xScale(index) - barWidth / 2.0, yScale(0));
-								upPath.lineTo(xScale(index) + barWidth / 2.0, yScale(0));
-								upPath.lineTo(xScale(index) + barWidth / 2.0, yScale(dataElem.histogram));
-								upPath.lineTo(xScale(index) - barWidth / 2.0, yScale(dataElem.histogram));
-								upPath.lineTo(xScale(index) - barWidth / 2.0, yScale(0));
-							} else {
-								//down
-								downPath.moveTo(xScale(index) - barWidth / 2.0, yScale(0));
-								downPath.lineTo(xScale(index) + barWidth / 2.0, yScale(0));
-								downPath.lineTo(xScale(index) + barWidth / 2.0, yScale(dataElem.histogram));
-								downPath.lineTo(xScale(index) - barWidth / 2.0, yScale(dataElem.histogram));
-								downPath.lineTo(xScale(index) - barWidth / 2.0, yScale(0));
-							}
-						}
-					}
-				}
-			}
-		}
-		return {
-			difPath: difPath,
-			deaPath: deaPath,
-			upPath: upPath,
-			downPath: downPath
-		};
-	}
+            if (dataElem.signal === '-' || dataElem.signal === undefined) {
+              firstS = false;
+            } else if (!firstS) {
+              firstS = true;
+              deaPath.moveTo(xScale(index), yScale(dataElem.signal));
+            } else {
+              deaPath.lineTo(xScale(index), yScale(dataElem.signal));
+            }
 
-	render() {
-		let { lineWidth, stroke } = this.props;
-		let paths = this._caculatePath();
-		let upPath = paths.upPath;
-		let downPath = paths.downPath;
-		let difPath = paths.difPath;
-		let deaPath = paths.deaPath;
-		let { offset } = this.context;
-		let transform = new Transform().translate(offset, 0);
-		return (
-			<Group>
-				<Shape d={upPath} fill={stroke.Raise} transform={transform} />
-				<Shape d={downPath} fill={stroke.Fall} transform={transform} />
-				<Shape d={difPath} stroke={stroke.DIFF} strokeWidth={lineWidth} transform={transform} />
-				<Shape d={deaPath} stroke={stroke.DEA} strokeWidth={lineWidth} transform={transform} />
-			</Group>
-		);
-	}
-}
+            if (dataElem.histogram === '-' || dataElem.histogram === undefined) {
+              // do nothing
+            } else if (dataElem.histogram >= 0) {
+              // up
+              upPath.moveTo(xScale(index) - curBarWidth / 2.0, yScale(0));
+              upPath.lineTo(xScale(index) + curBarWidth / 2.0, yScale(0));
+              upPath.lineTo(xScale(index) + curBarWidth / 2.0, yScale(dataElem.histogram));
+              upPath.lineTo(xScale(index) - curBarWidth / 2.0, yScale(dataElem.histogram));
+              upPath.lineTo(xScale(index) - curBarWidth / 2.0, yScale(0));
+            } else {
+              // down
+              downPath.moveTo(xScale(index) - curBarWidth / 2.0, yScale(0));
+              downPath.lineTo(xScale(index) + curBarWidth / 2.0, yScale(0));
+              downPath.lineTo(xScale(index) + curBarWidth / 2.0, yScale(dataElem.histogram));
+              downPath.lineTo(xScale(index) - curBarWidth / 2.0, yScale(dataElem.histogram));
+              downPath.lineTo(xScale(index) - curBarWidth / 2.0, yScale(0));
+            }
+          }
+        }
+      }
+    }
+    return {
+      difPath,
+      deaPath,
+      upPath,
+      downPath,
+    };
+  }
 
-MACD.contextTypes = {
-	indicatorData: PropTypes.object,
-	plotConfig: PropTypes.object,
-	domain: PropTypes.object,
-	xScale: PropTypes.func,
-	yScale: PropTypes.func,
-	offset: PropTypes.number
+  /**
+   * 渲染函数
+   *
+   * @returns
+   * @memberof MACD
+   */
+  render() {
+    const { lineWidth, stroke } = this.props;
+    const {
+      upPath, downPath, difPath, deaPath,
+    } = this._caculatePath();
+    const { offset } = this.context;
+    const transform = new Transform().translate(offset, 0);
+    return (
+      <Group>
+        <Shape d={upPath} fill={stroke.Raise} transform={transform} />
+        <Shape d={downPath} fill={stroke.Fall} transform={transform} />
+        <Shape d={difPath} stroke={stroke.DIFF} strokeWidth={lineWidth} transform={transform} />
+        <Shape d={deaPath} stroke={stroke.DEA} strokeWidth={lineWidth} transform={transform} />
+      </Group>
+    );
+  }
 }

@@ -62,7 +62,7 @@ module.exports = {
 				'data': {
 					"result":[
 						{
-							"lastClosePrice|500-600.2":1,
+							"preClosedPrice|500-600.2":1,
 							"totalCount":1320,
 							"version":"",
 							"result|1320":[[
@@ -75,7 +75,7 @@ module.exports = {
 							]]
 						},
 						{
-							"lastClosePrice|500-600.2":1,
+							"preClosedPrice|500-600.2":1,
 							"totalCount":1320,
 							"version":"",
 							"result|1320":[[
@@ -88,7 +88,7 @@ module.exports = {
 							]]
 						},
 						{
-							"lastClosePrice|500-600.2":1,
+							"preClosedPrice|500-600.2":1,
 							"totalCount":1320,
 							"version":"",
 							"result|1320":[[
@@ -101,7 +101,7 @@ module.exports = {
 							]]
 						},
 						{
-							"lastClosePrice|500-600.2":1,
+							"preClosedPrice|500-600.2":1,
 							"totalCount":1320,
 							"version":"",
 							"result|1320":[[
@@ -114,7 +114,7 @@ module.exports = {
 							]]
 						},
 						{
-							"lastClosePrice|500-600.2":1,
+							"preClosedPrice|500-600.2":1,
 							"totalCount":1320,
 							"version":"",
 							"result|1-1320":[[

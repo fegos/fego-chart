@@ -3129,9 +3129,9 @@ var CCI = function (_Indicator26) {
 								break;
 							}
 
-							//First, subtract the most recent 20-period average of the typical price from each period's typical price. 
+							//First, subtract the most recent 20-period average of the typical price from each period's typical price.
 							//Second, take the absolute values of these numbers.
-							//Third,sum the absolute values. 
+							//Third,sum the absolute values.
 							_iteratorNormalCompletion2 = true;
 							_didIteratorError2 = false;
 							_iteratorError2 = undefined;
@@ -3141,7 +3141,7 @@ var CCI = function (_Indicator26) {
 
 								sum = sum + Math.abs(x - smaTp);
 							}
-							//Fourth, divide by the total number of periods (20). 
+							//Fourth, divide by the total number of periods (20).
 							_context27.next = 22;
 							break;
 

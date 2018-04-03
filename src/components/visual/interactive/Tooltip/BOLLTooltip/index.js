@@ -1,7 +1,6 @@
 /**
  * BoolTooltip
  */
-import React, { Component } from 'react'
-import bollTooltip from './boll'
+import bollTooltip from './boll';
 
-export default class BOLLTooltip extends bollTooltip {}
+export default class BOLLTooltip extends bollTooltip { }

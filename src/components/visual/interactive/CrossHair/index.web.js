@@ -19,7 +19,7 @@ export default class CrossHair extends Component {
 		showHLineLtLabel:false,
 		showHLineRtLabel: false,
 		showVLineLable: false,
-		lastClose: null,
+		preClosedPrice: null,
 		hLineLtLabel:{
 			width:45,
 			height:20,
@@ -173,7 +173,7 @@ export default class CrossHair extends Component {
 
 	//绘制十字线横线右侧Label
 	drawHLineRtLabel = (ch, chartContext) => {
-		let { hLineRtLabel: labelProps, lastClose, hLineRtLabelInPct } = this.props;
+		let { hLineRtLabel: labelProps, preClosedPrice, hLineRtLabelInPct } = this.props;
 		let { context, yScale, containerFrame, chartFrame } = chartContext
 		if(!yScale) return;
 		let offsets = calcOffset(containerFrame,chartFrame)
@@ -182,10 +182,10 @@ export default class CrossHair extends Component {
 		context.fillRect(ch.hLine.endX,ch.hLine.endY-labelProps.height/2,labelProps.width,labelProps.height)
 		context.fillStyle='#FFF'
 		let labelText = ''
-		if(hLineRtLabelInPct && !isNaN(lastClose)){
+		if(hLineRtLabelInPct && !isNaN(preClosedPrice)){
 			let currValue = yScale.invert(ch.hLine.endY-offsets[1])
-			lastClose = +lastClose
-			labelText = (100*(currValue - lastClose)/lastClose).toFixed(2) + "%"
+			preClosedPrice = +preClosedPrice
+			labelText = (100*(currValue - preClosedPrice)/preClosedPrice).toFixed(2) + "%"
 		}
 		else {
 			labelText = yScale.invert(ch.hLine.endY-offsets[1]).toFixed(2)

@@ -1,17 +1,7 @@
-//Y轴组件
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import BaseAxis from '../BaseAxis'
+// Y轴组件
+import React from 'react';
+import BaseAxis from '../BaseAxis';
 
-export default class XAxis extends Component {
-
-    constructor(props) {
-        super(props)
-    }
-
-    render() {
-        return (
-            <BaseAxis type='YAxis' {...this.props} />
-        )
-    }
-}
+export default () => (
+  <BaseAxis type="YAxis" {...this.props} />
+);
