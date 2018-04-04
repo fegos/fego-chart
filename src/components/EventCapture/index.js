@@ -36,7 +36,7 @@ export default class EventCapture extends Component {
     start: 1001,
     changing: 1002,
     end: 1003,
-  }
+  };
 
   static defaultProps = {
     shouldCaptureMoveGesture: false,
