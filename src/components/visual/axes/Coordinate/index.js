@@ -30,7 +30,15 @@ export default class Coordinate extends Component {
     color: '#8F8F8F',
     riseColor: '#F05B48',
     fallColor: '#10BC90',
-    centerTickOffset: 10,
+    tickOffsetX: 10,
+    tickOffsetY: 5,
+    leftOffset: 5,
+    rightOffset: 5,
+    topOffset: 5,
+    bottomOffset: 10,
+    tickHeight: 15,
+    tickWidth: 35,
+    isTickCenter: false,
   }
 
   static propTypes = {
@@ -54,8 +62,25 @@ export default class Coordinate extends Component {
     riseColor: PropTypes.string,
     // 下跌字体颜色
     fallColor: PropTypes.string,
-    // 五日图横坐标offset
-    centerTickOffset: PropTypes.number,
+    // tick宽度
+    tickWidth: PropTypes.number,
+    // tick高度
+    tickHeight: PropTypes.number,
+    // x轴ticks偏移量
+    tickOffsetX: PropTypes.number,
+    // y轴ticks偏移量
+    tickOffsetY: PropTypes.number,
+    // 左侧offset
+    leftOffset: PropTypes.number,
+    // 右侧offset
+    rightOffset: PropTypes.number,
+    // 顶部offset
+    topOffset: PropTypes.number,
+    // 底部offset
+    bottomOffset: PropTypes.number,
+    // tick位置是否居中
+    isTickCenter: PropTypes.bool,
+
   }
 
   /**
@@ -83,7 +108,7 @@ export default class Coordinate extends Component {
       props.position === 'bottom') {
       const { xScale: preXScale } = context;
       const { xScale } = nextContext;
-      if (xScale === null || preXScale === null) {
+      if ((xScale === null || preXScale === null) && xScale !== preXScale) {
         shouldUpdate = true;
       } else if (context.xScale(testNumber) !== nextContext.xScale(testNumber) ||
         JSON.stringify(context.data) !== JSON.stringify(nextContext.data) ||
@@ -101,7 +126,9 @@ export default class Coordinate extends Component {
    */
   _updateTicksInfo = () => {
     const {
-      position, preClosedPrice, tickPos, isTimestamp, dateFormat, timezone, color, riseColor, fallColor, fontFamily, fontWeight, fontSize,
+      position, preClosedPrice, isTimestamp, dateFormat, timezone, color, riseColor, fallColor, fontFamily, fontWeight, fontSize,
+      topOffset, leftOffset, rightOffset, bottomOffset, tickOffsetX, tickOffsetY,
+      tickHeight, tickWidth, isTickCenter,
     } = this.props;
     const {
       data, domain, xScale, yScale, frame, xTicks, yTicks, xDateTicks, offset,
@@ -113,15 +140,15 @@ export default class Coordinate extends Component {
         const yTicksCount = yTicks.length;
         if (yTicksCount) {
           ticks = yTicks.map((tick, i) => {
-            let y = yScale(tick) - 5;
+            let y = yScale(tick) - tickOffsetY;
             if (i === 0) {
-              y = yScale(tick) - 20;
+              y -= tickHeight;
             } else if (i === yTicksCount - 1) {
-              y = yScale(tick) + 10;
+              y += tickHeight;
             }
-            let x = 5;
+            let x = leftOffset;
             if (position === 'right') {
-              x = frame.width - 35;
+              x = frame.width - tickWidth;
             }
             let tickTextColor = color;
             if (preClosedPrice && !Number.isNaN(+preClosedPrice)) {
@@ -152,17 +179,16 @@ export default class Coordinate extends Component {
             const text = xDateTicks[i];
             let x;
             let y;
-            if (tickPos && tickPos === 'center') x = centerX + offset - this.props.centerTickOffset;
-            else x = centerX - 10 + offset;
-            y = 5;
-            if (x < 10) {
-              x = 10;
+            x = centerX - tickOffsetX + offset;
+            y = topOffset;
+            if (x < leftOffset) {
+              x = leftOffset;
             }
-            if (tickPos !== 'center' && i === xTicks.length - 1) {
-              x = centerX - 30;
+            if (!isTickCenter && i === xTicks.length - 1) {
+              x = centerX - rightOffset - tickWidth;
             }
             if (position === 'bottom') {
-              y = frame.height + 10;
+              y = frame.height + bottomOffset;
             }
             const key = `text${i}`;
             return (
@@ -182,10 +208,10 @@ export default class Coordinate extends Component {
                   const timestamp = getTimestamp(text, timezone);
                   text = moment.tz(timestamp, timezone).format(dateFormat);
                 }
-                const x = centerX - 25 + offset;
-                let y = 5;
+                const x = centerX - tickOffsetX + offset;
+                let y = topOffset;
                 if (position === 'bottom') {
-                  y = frame.height + 10;
+                  y = frame.height + bottomOffset;
                 }
                 const key = `text${i}`;
                 return (

@@ -40,7 +40,7 @@ export default class BaseTooltip extends Component {
     // Tooltip字重
     fontWeight: PropTypes.string,
     // 指标
-    indicators: PropTypes.arrayOf(PropTypes.string),
+    indicators: PropTypes.arrayOf(PropTypes.object),
     // 指标名
     title: PropTypes.string,
     // 参数
@@ -86,7 +86,7 @@ export default class BaseTooltip extends Component {
 
     let shouldRedraw = false;
 
-    if ((preEvents.longPressEvent === null || events.longPressEvent === null) &&
+    if ((!preEvents.longPressEvent || !events.longPressEvent) &&
       preEvents.longPressEvent !== events.longPressEvent) {
       shouldRedraw = true;
     } else if (preEvents.longPressEvent && events.longPressEvent) {

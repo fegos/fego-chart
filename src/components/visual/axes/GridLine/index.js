@@ -54,6 +54,8 @@ export default class GridLine extends Component {
       if (JSON.stringify(this.context.frame) !== JSON.stringify(nextContext.frame)) {
         return true;
       }
+    } else if (!this.context.xScale && nextContext.xScale) {
+      return true;
     } else if (this.context.xScale(testNumber) !== nextContext.xScale(testNumber) ||
       JSON.stringify(this.context.xTicks) !== JSON.stringify(nextContext.xTicks)) {
       return true;

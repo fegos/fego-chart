@@ -56,6 +56,10 @@ export default class LineSeries extends Component {
       return true;
     }
     const testNumber = 10;
+    if (((!preYScale || !yScale) && preYScale !== yScale) ||
+      ((!preXScale || !xScale) && preXScale !== xScale)) {
+      return true;
+    }
     if (preXScale(testNumber) !== xScale(testNumber) ||
       preYScale(testNumber) !== yScale(testNumber)) {
       return true;

@@ -79,7 +79,7 @@ export default class ChartView extends Component {
    * 网络请求
    */
   _queryTimeLineData = () => {
-    fetch('http://10.235.19.239:5002/lineQuote')
+    fetch('http://192.168.199.145:5002/lineQuote')
       .then(response => response.json())
       .then((responseJson) => {
         this.setState({
@@ -90,7 +90,7 @@ export default class ChartView extends Component {
   }
 
   _queryKLineData = () => {
-    fetch('http://10.235.19.239:5002/kLineQuote')
+    fetch('http://192.168.199.145:5002/kLineQuote')
       .then(response => response.json())
       .then((responseJson) => {
         this.setState({
@@ -106,7 +106,7 @@ export default class ChartView extends Component {
       const { klineData, domain } = this.state;
       const preData = klineData;
 
-      fetch('http://10.235.19.239:5002/kLineQuote')
+      fetch('http://192.168.199.145:5002/kLineQuote')
         .then(response => response.json())
         .then((responseJson) => {
           const { data } = responseJson;
@@ -400,7 +400,7 @@ export default class ChartView extends Component {
           techView = (
             <Group>
               <MACD dataKey={indicators.MACD[0].dataKey} stroke={indicators.MACD[0].stroke} barWidth={3} />
-              <MACDTooltip indicators={indicators.MACD} yPos={5} />
+              <MACDTooltip indicators={indicators.MACD} topMargin={5} />
             </Group>
           );
           break;
@@ -412,7 +412,7 @@ export default class ChartView extends Component {
               <RSI dataKey={indicators.RSI[0].dataKey} stroke={indicators.RSI[0].stroke} />
               <RSI dataKey={indicators.RSI[1].dataKey} stroke={indicators.RSI[1].stroke} />
               <RSI dataKey={indicators.RSI[2].dataKey} stroke={indicators.RSI[2].stroke} />
-              <RSITooltip indicators={indicators.RSI} yPos={5} />
+              <RSITooltip indicators={indicators.RSI} topMargin={5} />
             </Group>
           );
           break;
@@ -422,7 +422,7 @@ export default class ChartView extends Component {
           techView = (
             <Group>
               <KDJ dataKey={indicators.KDJ[0].dataKey} stroke={indicators.KDJ[0].stroke} />
-              <KDJTooltip indicators={indicators.KDJ} yPos={5} />
+              <KDJTooltip indicators={indicators.KDJ} topMargin={5} />
             </Group>
           );
           break;

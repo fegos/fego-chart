@@ -47,7 +47,7 @@ export default class CrossHair extends Component {
     verLabelWidth: 58,
     fillColor: '#31323A',
     borderColor: '#78797E',
-    borderRadius: 10,
+    borderRadius: 0,
     borderWidth: StyleSheet.hairlineWidth,
     lineColor: 'gray',
     lineWidth: StyleSheet.hairlineWidth,
@@ -153,6 +153,9 @@ export default class CrossHair extends Component {
         shouldUpdate = true;
       }
       if (JSON.stringify(currentItem) !== JSON.stringify(preCurrentItem)) {
+        shouldUpdate = true;
+      }
+      if ((!preXScale || !xScale || !preYScale || !yScale) && (preXScale !== xScale || preYScale !== yScale)) {
         shouldUpdate = true;
       }
       if (events.longPressEvent) {
@@ -380,7 +383,7 @@ export default class CrossHair extends Component {
   /**
    * 渲染区
    *
-   * @returns 
+   * @returns
    * @memberof CrossHair
    */
   render() {

@@ -79,32 +79,31 @@ export default class AreaSeries extends LineSeries {
    */
   render() {
     const {
-      lineColor, lineWidth, riseColor, fallColor, dataKey, yExtents, lightRiseColor, lightFallColor,
+      lineColor, lineWidth, riseColor, fallColor, yExtents, lightRiseColor, lightFallColor,
     } = this.props;
     const { data, preClosedPrice, frame } = this.context;
     let strokeColor = lineColor;
 
     let gradientLayer = null;
     this._caculatePath();
-    if (dataKey === 'timeline') {
-      if (data) {
-        let lightColor = null;
-        let lastItem = data[data.length - 1];
-        lastItem = yExtents(lastItem);
-        if (lastItem < preClosedPrice) {
-          strokeColor = fallColor;
-          lightColor = lightFallColor;
-        } else {
-          strokeColor = riseColor;
-          lightColor = lightRiseColor;
-        }
-        const linearGradient = new ART.LinearGradient({
-          0: strokeColor,
-          1: lightColor,
-        }, 0, 0, 0, frame.height);
-        gradientLayer = <Shape d={this._gradientPath} fill={linearGradient} />;
+    if (data) {
+      let lightColor = null;
+      let lastItem = data[data.length - 1];
+      lastItem = yExtents(lastItem);
+      if (lastItem < preClosedPrice) {
+        strokeColor = fallColor;
+        lightColor = lightFallColor;
+      } else {
+        strokeColor = riseColor;
+        lightColor = lightRiseColor;
       }
+      const linearGradient = new ART.LinearGradient({
+        0: strokeColor,
+        1: lightColor,
+      }, 0, 0, 0, frame.height);
+      gradientLayer = <Shape d={this._gradientPath} fill={linearGradient} />;
     }
+
     return (
       <Group>
         {gradientLayer}
