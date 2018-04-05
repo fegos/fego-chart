@@ -108,7 +108,7 @@ export default class Coordinate extends Component {
       props.position === 'bottom') {
       const { xScale: preXScale } = context;
       const { xScale } = nextContext;
-      if ((xScale === null || preXScale === null) && xScale !== preXScale) {
+      if (!xScale || !preXScale) {
         shouldUpdate = true;
       } else if (context.xScale(testNumber) !== nextContext.xScale(testNumber) ||
         JSON.stringify(context.data) !== JSON.stringify(nextContext.data) ||

@@ -155,7 +155,7 @@ export default class CrossHair extends Component {
       if (JSON.stringify(currentItem) !== JSON.stringify(preCurrentItem)) {
         shouldUpdate = true;
       }
-      if ((!preXScale || !xScale || !preYScale || !yScale) && (preXScale !== xScale || preYScale !== yScale)) {
+      if (!preXScale || !xScale || !preYScale || !yScale) {
         shouldUpdate = true;
       }
       if (events.longPressEvent) {
