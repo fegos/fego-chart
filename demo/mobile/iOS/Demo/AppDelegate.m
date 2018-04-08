@@ -58,7 +58,7 @@
 #pragma mark - 启动项
 
 - (RCTRootView *)loadJSViewWithLaunchOptions:(NSDictionary *)launchOptions {
-    NSString *bundlePath = [NSString stringWithFormat:@"http://%@:8081/%@.bundle?platform=ios&dev=true", @"10.235.10.139", @"demo/mobile/rn/index"];
+    NSString *bundlePath = [NSString stringWithFormat:@"http://%@:8081/%@.bundle?platform=ios&dev=true", @"192.168.199.145", @"demo/mobile/rn/index"];
     NSURL *bundleURL = [NSURL URLWithString:bundlePath];
     RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:bundleURL
                                                         moduleName:@"Demo"
