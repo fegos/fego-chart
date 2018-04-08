@@ -16,7 +16,7 @@
 		"url": "https://git.ms.netease.com/chart-engine/fego-chart.git"
 	},
 	"keywords": [],
-	"author": "NSIP Chart Group",
+	"author": "Fego Chart Group",
 	"license": "MIT",
 	"devDependencies": {
 		"babel-plugin-module-alias": "^1.6.0",

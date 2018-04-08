@@ -6,7 +6,7 @@ class Header extends Component {
 	render() {
 		return (
 			<header>
-				<h1>NSIP Chart Web Demo</h1>
+				<h1>Fego Chart Web Demo</h1>
 			</header>
 		)
 	}

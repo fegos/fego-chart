@@ -13,7 +13,7 @@ let config = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename:'bundle.js',
-		library: 'nsipChart',
+		library: 'fegoChart',
 		libraryTarget: 'umd'
 	},
 	module: {
