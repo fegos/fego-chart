@@ -79,7 +79,7 @@ export default class ChartView extends Component {
    * 网络请求
    */
   _queryTimeLineData = () => {
-    fetch('http://192.168.199.145:5002/lineQuote')
+    fetch('http://10.235.156.151:5002/lineQuote')
       .then(response => response.json())
       .then((responseJson) => {
         this.setState({
@@ -90,7 +90,7 @@ export default class ChartView extends Component {
   }
 
   _queryKLineData = () => {
-    fetch('http://192.168.199.145:5002/kLineQuote')
+    fetch('http://10.235.156.151:5002/kLineQuote')
       .then(response => response.json())
       .then((responseJson) => {
         this.setState({
@@ -106,7 +106,7 @@ export default class ChartView extends Component {
       const { klineData, domain } = this.state;
       const preData = klineData;
 
-      fetch('http://192.168.199.145:5002/kLineQuote')
+      fetch('http://10.235.156.151:5002/kLineQuote')
         .then(response => response.json())
         .then((responseJson) => {
           const { data } = responseJson;

@@ -21,11 +21,12 @@ target 'Demo' do
     'RCTAnimation',
     'RCTLinkingIOS',
     'ART',
-    'jschelpers_legacy',
-    'cxxreact_legacy',
-    'BatchedBridge'
+    'jschelpers',
+    'cxxreact',
+    'CxxBridge',
+    'fabric',
  ]
- pod "Yoga", :path => “../../../node_modules/react-native/ReactCommon/yoga"
+ pod "yoga", :path => "../../../node_modules/react-native/ReactCommon/yoga"
 
 
 end
