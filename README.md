@@ -4,10 +4,10 @@
 fego-chart: 跨平台行情图表引擎库
 
 ## 当前版本以及依赖
-+ v0.1.3
++ v0.5.0
 + 依赖
-	+ react: v16 alpha-6
-	+ rn: 0.44
+	+ react: v16.3.1
+	+ rn: 0.55.3
 	+ babel-loader: 7.x
 
 ## 行情图表引擎小组：
