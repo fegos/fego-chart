@@ -661,6 +661,9 @@ export default class ChartContainer extends Component {
     const {
       maxScale, minScale, barWidth, spacing,
     } = plotConfig;
+    if (!domain || !data) {
+      return;
+    }
     let { start, end } = domain;
     if ((curScale >= maxScale && scale > 1) ||
       (curScale <= minScale && scale < 1)) {

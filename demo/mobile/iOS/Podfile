@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '8.0'
 
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://git.ms.netease.com/commonlibraryios/podspec.git'
@@ -24,7 +24,6 @@ target 'Demo' do
     'jschelpers',
     'cxxreact',
     'CxxBridge',
-    'fabric',
  ]
  pod "yoga", :path => "../../../node_modules/react-native/ReactCommon/yoga"
 
