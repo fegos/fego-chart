@@ -11,11 +11,6 @@ fego-chart: 跨平台行情图表引擎库
 	+ babel-loader: 7.x
 
 ## 行情图表引擎小组：
-+ 徐达迟 bjxudachi@corp.netease.com
-+ 付鑫 bjfuxin1@corp.netease.com
-+ 沈文兴 bjshenwenxing@corp.netease.com
-+ 荆博 bjjingbo@corp.netease.com
-+ 马腾 tengma@corp.netease.com
 
 ## 注意事项
 
